@@ -12,7 +12,7 @@ WinoVis consists of two key functionalities.
   
 The code for WinoVis has been designed to allow the user to specify their desired diffusion model, as well as what functions to execute and with what parameters.
 Examples:
-  * `python __init__.py stabilityai/stable-diffusion-2-base 0`- Here the user specifies SD 2.0 as their model for image generation and uses 0 to indicate that they would like to run both image generation and model evaluation.
-  * `python __init__.py stabilityai/stable-diffusion-2-base 1`- Here, the user uses 1 to indicate they only want to generate and overlay images.
+  * `python __init__.py stabilityai/stable-diffusion-2-base 0`- Here the user specifies SD 2.0 as their model for image generation and uses `0` to indicate that they would like to run both image generation and model evaluation.
+  * `python __init__.py stabilityai/stable-diffusion-2-base 1`- Here, the user uses `1` to indicate they only want to generate and overlay images.
   * `python __init__.py stabilityai/stable-diffusion-2-base 2`- By using `2` the user has specified they only want to evaluate a model which has presumably already generated images and their heatmaps.
   * `python __init__.py stabilityai/stable-diffusion-2-base 0 0.4 0.6` - This input matches the first example but provides two additional parameters, the decision boundary (0.4) and overlap threshold (0.6).
