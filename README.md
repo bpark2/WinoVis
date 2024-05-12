@@ -18,6 +18,13 @@ Examples:
   * `python __init__.py stabilityai/stable-diffusion-2-base 0 0.4 0.6` - This input matches the first example but provides two additional parameters, the decision boundary (0.4) and overlap threshold (0.6).
 If the user does not provide the values for the decision boundary and overlap threshold, the default values of 0.4 discussed in the paper are used.
 
+When running WinoVis you will be prompted to specify the name of your dataset from a list of any datasets included in the `data` folder. If you generated a custom dataset matching the WinoVis format and wish to use it, please ensure it is located in the `data` folder so that it can be used.
+
+If you are also evaluating your model, after images have been generated you will be prompted to provide the name of the heatmap pickle file (saved in the `heatmaps` folder) and the dataset matching that heatmap folder (for example `wsv.pkl`). Afterwards you will be presented with a performance breakdown of your specified model.
+
+## Interpreting Output
+Generated images are added to a folder titled `model-name_wsv_images` which can be found in `images`. The versions of these images with heatmaps overlayed are stored in a similarly titled folder which specifies the model name and heatmap threshold. This folder can be found in `hm_images`.
+
 ## Citation
 ```
 @inproceedings{tbd,
