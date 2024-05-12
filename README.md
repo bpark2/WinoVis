@@ -17,3 +17,13 @@ Examples:
   * `python __init__.py stabilityai/stable-diffusion-2-base 2`- By using `2` the user has specified they only want to evaluate a model which has presumably already generated images and their heatmaps.
   * `python __init__.py stabilityai/stable-diffusion-2-base 0 0.4 0.6` - This input matches the first example but provides two additional parameters, the decision boundary (0.4) and overlap threshold (0.6).
 If the user does not provide the values for the decision boundary and overlap threshold, the default values of 0.4 discussed in the paper are used.
+
+## Citation
+```
+@inproceedings{tbd,
+    title = "Picturing Ambiguity: A Visual Twist on the Winograd Schema Challenge",
+    author = 
+    year = "2024",
+    url = "",
+}
+```
