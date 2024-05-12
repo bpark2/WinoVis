@@ -10,7 +10,13 @@ WinoVis consists of two key functionalities.
   ⋅ Generating images and overlaying their heatmaps onto them
   ⋅ Evaluating the performance of your chosen diffusion model in the task of WinoVis using default or user-specified parameters.
   
-The code for WinoVis has been designed to allow the user to specify their desired diffusion model, as well as what functions to execute and with what parameters.
+The code for WinoVis has been designed to allow the user to specify their desired diffusion model, as well as what functions to execute and with what parameters. 
+Models which have been tested/used with WinoVis include the following:
+  * [CompVis/stable-diffusion-v1-1](https://huggingface.co/CompVis/stable-diffusion-v1-1)
+  * [runwayml/stable-diffusion-v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5)
+  * [stabilityai/stable-diffusion-2-base](https://huggingface.co/stabilityai/stable-diffusion-2-base)
+  * [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
+
 Examples:
   * `python __init__.py stabilityai/stable-diffusion-2-base 0`- Here the user specifies SD 2.0 as their model for image generation and uses `0` to indicate that they would like to run both image generation and model evaluation.
   * `python __init__.py stabilityai/stable-diffusion-2-base 1`- Here, the user uses `1` to indicate they only want to generate and overlay images.
