@@ -271,16 +271,19 @@ def measure_acc(iou_db,iou_ol):
     }
     #printing out table and metrics
     print(tabulate(data, headers="keys", tablefmt="fancy_grid"))
-    precision = preds[0][0]/(preds[0][0]+preds[0][1])
-    recall = preds[0][0]/(preds[0][0]+preds[1][0])
-    f1 = (2*precision*recall)/(precision+recall)
-    accuracy = (preds[0][0] + preds[1][1])/(preds[0][0] + preds[0][1] + preds[1][0] + preds[1][1])
-    certainty = (preds[0][0] + preds[0][1] + preds[1][0] + preds[1][1])/(preds[0][0] + preds[0][1] + preds[1][0] + preds[1][1] + preds[2][0] + preds[2][1])
-    print("Precision: "+str(round(precision,4)))
-    print("Recall: "+str(round(recall,4)))
-    print("F1: "+str(round(f1,4)))
-    print("Accuracy: "+str(round(accuracy,4)))
-    print("Certainty: "+str(round(certainty,4)))
+    try:
+        precision = preds[0][0]/(preds[0][0]+preds[0][1])
+        recall = preds[0][0]/(preds[0][0]+preds[1][0])
+        f1 = (2*precision*recall)/(precision+recall)
+        accuracy = (preds[0][0] + preds[1][1])/(preds[0][0] + preds[0][1] + preds[1][0] + preds[1][1])
+        certainty = (preds[0][0] + preds[0][1] + preds[1][0] + preds[1][1])/(preds[0][0] + preds[0][1] + preds[1][0] + preds[1][1] + preds[2][0] + preds[2][1])
+        print("Precision: "+str(round(precision,4)))
+        print("Recall: "+str(round(recall,4)))
+        print("F1: "+str(round(f1,4)))
+        print("Accuracy: "+str(round(accuracy,4)))
+        print("Certainty: "+str(round(certainty,4)))
+    except Exception as error:
+        print("An error has occured, if it is a division by zero \n refer to your table for an explanation:\n"+str(error))
 
 
 parser = argparse.ArgumentParser(description='WinoVis')
@@ -290,32 +293,22 @@ parser.add_argument('db', metavar='decision boundary', type=float, nargs='?', he
 parser.add_argument('ot', metavar='overlap threshold', type=float, nargs='?', help='float value used to specify the overlap threshold (0.4 by default)')
 args = parser.parse_args()
 
-if not str(args.diff_mod).__contains__('stable-diffusion-xl'):#likely will remove this statement later, just here for now to remind me to test sdxl
-    if args.diff_mod == None:#no diffusion model specified
-        print("Missing specification of diffusion model. Common choices include " + ' '.join(
-            model_ids) + ". SD 2.0 will be used")
-        model_ids = ['stabilityai/stable-diffusion-2-base']
-    else:
-        model_ids = [str(args.diff_mod[0])]
-    if args.functions[0] == 0: #generates images and runs measure_acc since no functions are specified
-        generate_images()
-        if not args.db == None and args.db <= 1.0:
-            decision_boundary = args.db
-        if not args.ot == None and args.ot <= 1.0:
-            overlap_threshold = args.ot
-        measure_acc(decision_boundary,overlap_threshold)
-    elif args.functions[0] == 1:#generate_images specified
-        generate_images()
-    elif args.functions[0] == 2:#measure_acc specified
-        if not args.db == None and args.db <= 1.0:
-            decision_boundary = args.db
-        if not args.ot == None and args.ot <= 1.0:
-            overlap_threshold = args.ot
-        measure_acc(decision_boundary,overlap_threshold)
-else: #user specified sdxl - still need to modify code to work for both
-    print('SDXL support not yet tested. May lead to unexpected errors.')
-    model_ids = ["stabilityai/stable-diffusion-xl-base-1.0"]
+if args.diff_mod == None:#no diffusion model specified
+    print("Missing specification of diffusion model. Common choices include " + ' '.join(
+        model_ids) + ". SD 2.0 will be used")
+    model_ids = ['stabilityai/stable-diffusion-2-base']
+else:
+    model_ids = [str(args.diff_mod[0])]
+if args.functions[0] == 0: #generates images and runs measure_acc since no functions are specified
     generate_images()
+    if not args.db == None and args.db <= 1.0:
+        decision_boundary = args.db
+    if not args.ot == None and args.ot <= 1.0:
+        overlap_threshold = args.ot
+    measure_acc(decision_boundary,overlap_threshold)
+elif args.functions[0] == 1:#generate_images specified
+    generate_images()
+elif args.functions[0] == 2:#measure_acc specified
     if not args.db == None and args.db <= 1.0:
         decision_boundary = args.db
     if not args.ot == None and args.ot <= 1.0:
