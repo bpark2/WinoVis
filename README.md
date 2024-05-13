@@ -3,7 +3,7 @@
 WinoVis is a novel dataset specifically designed to probe text-to-image models on pronoun disambiguation within multimodal contexts. Utilizing [GPT-4](https://openai.com/index/gpt-4-research/) for prompt generation and [Diffusion Attentive Attribution Maps (DAAM)](https://github.com/castorini/daam) for heatmap analysis, we propose a novel evaluation framework that isolates the models' ability in pronoun disambiguation from other visual processing challenges.
 
 <div align="center">
-  <img src="https://github.com/bpark2/WinoVis/blob/master/bee_example.png" width="302" height="305">
+  <img src="https://github.com/bpark2/WinoVis/blob/master/bee_example.png" width="255" height="312">
 </div>
 
 ## Getting Started
